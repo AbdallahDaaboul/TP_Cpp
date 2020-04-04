@@ -1,0 +1,8 @@
+decision.o: decision.cc decision.hh processing.hh shape.hh utilities.h
+main.o: main.cc shape.hh utilities.h terminal.hh processing.hh \
+ inputOutput.hh decision.hh
+terminal.o: terminal.cc terminal.hh shape.hh utilities.h
+inputOutput.o: inputOutput.cc inputOutput.hh processing.hh shape.hh \
+ utilities.h
+shape.o: shape.cc shape.hh utilities.h
+utilities.o: utilities.cc utilities.h

@@ -1,0 +1,45 @@
+
+  2_Implementation
+
+  On peut remarquer dans le main ces deux commandes:
+  Decision * s6 = new Decision("d1","a<b");
+  Decision * s7 = new Decision(*s6);
+  par contre les constructeurs par copie // ayant 2 entrées ne sont pas implémenter 
+
+  Donc je les ai ajouté dans décisions.hh et sont les suivants :
+
+  "
+  Decision(std::string label,std::string i):Processing(label,i,2){}
+  Decision(Decision & d):Processing(d._label,d._instr,d._nb_connect_max){}
+  "
+
+  En plus decision hérite de processing mais les constructeurs de processing était quasiment vide donc je les ai implémenté:
+  Comme processing hérite de shape il fallait appeler le bon constructeur de shape pour chaque constructeur processing en oubliant pas d'initialiser l'attribut _instr à la valeur i 
+  
+  "
+  Processing(std::string label):Shape(label){}
+  Processing(std::string label, std::string i):Shape(label),_instr(i){}
+  Processing(std::string l, std::string i,size_t n):Shape(l,n),_instr(i){}
+  Processing(std::string label, size_t n):Shape(label,n){}
+  "
+
+
+  De même pour Terminal qui hérite de shape, sont constructeur est vide il est nécéssaire d'executer le constructeur de Shape pour le constructeur de Terminal:
+
+  "Terminal(std::string label):Shape(label){}"
+
+
+  Niveau Mémoire:
+  Je free les pointeurs du test 1
+  delete s1;
+  delete s2;
+  delete s6;
+  delete s7;
+
+  Et dans le test 2
+  delete s1;
+  delete s2;
+  delete s3;
+  delete s4;
+  delete s5;
+  delete s6;
